@@ -10,9 +10,9 @@
 ##
 IDE Eclipse Mars 1 http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars2
 ##
-Apache Tomcat 7 https://tomcat.apache.org/download-80.cgi
+Apache Tomcat 8 https://tomcat.apache.org/download-80.cgi
 ##
-Java JDK 7 http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk7-downloads-1880260.html
+Java JDK 8 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html?ssSourceSiteId=otnpt
 ##
 MySql https://dev.mysql.com/img/banners/MySQLInstallerDownloadBanner_57.png. Configuração padrão de usuário é root senha root.
 Mysql Workbench gerenciador para o MYSQL https://dev.mysql.com/downloads/workbench/
