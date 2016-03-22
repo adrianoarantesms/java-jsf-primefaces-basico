@@ -285,7 +285,7 @@ https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/lib/l
 	Temos a linha <class>model.Pessoa</class>, onde mapeamos quem são nossas 
 	classes entidades, ou seja, todas as classes modelos que representam as 
 	tabelas do banco de dados precisam ser mapeadas aqui.
-	Na linha "hibernate.connection.url" temos o caminho do sql junto com seu schema 
+	Na linha "hibernate.connection.url" temos o caminho do MYSQL junto com seu schema 
 	( Não esqueça de criar o schema "java-jsf-primefaces-basico" no MYSQL).
 	Usuário e Senha padrão do MYSQL root root, altere caso seu MYSQL seja outro usuário e senha.
 	já nas linhas <property name="hibernate.hbm2ddl.auto" value="create" /> e 
