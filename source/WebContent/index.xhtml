@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html"></f:view>
+
+<h:head>
+
+</h:head>
+
+
+<h:body>
+	<h:form>
+	
+	<!-- Form de Cadastro -->
+		<h:panelGrid id="panelgrid" columns="2" cellpadding="5">
+			<p:outputLabel value="Nome:" for="acNome" />
+			<p:autoComplete id="acNome" value="#{pessoaMB.pessoa.nome}" />
+			<p:outputLabel value="E-Mail:" for="acEmail" />
+			<p:autoComplete id="acEmail" value="#{pessoaMB.pessoa.email}" />
+			<p:outputLabel value="Telefone:" for="acTelefone" />
+			<p:autoComplete id="acTelefone" value="#{pessoaMB.pessoa.telefone}" />
+ 			<p:growl id="messages" /> 
+			<p:splitButton value="salvar" action="#{pessoaMB.salvar}"
+				type="button" update="panelgrid" icon="ui-icon-disk">
+			</p:splitButton>
+
+
+			<!-- Grid de Consulta -->
+			<p:dataTable var="c" value="#{pessoaMB.list}">
+				<p:column headerText="Id">
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{c.nome}" />
+				</p:column>
+				<p:column headerText="Email">
+					<h:outputText value="#{c.email}" />
+				</p:column>
+				<p:column headerText="Telefone">
+					<h:outputText value="#{c.telefone}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGrid>
+	</h:form>
+	
+</h:body>
+
+
+</html>
