@@ -14,7 +14,7 @@ Apache Tomcat 8 https://tomcat.apache.org/download-80.cgi
 ##
 Java JDK 8 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html?ssSourceSiteId=otnpt
 ##
-MySql https://dev.mysql.com/img/banners/MySQLInstallerDownloadBanner_57.png. Configuração padrão de usuário é root senha root.
+MySql http://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-5.7.11.0.msi. Instale a opção Server, a configuração padrão de usuário é root senha root.
 Mysql Workbench gerenciador para o MYSQL https://dev.mysql.com/downloads/workbench/
 ##
 Instale também o MySql WorkBench para acessar e criar os "schemas". Esta no mesmo Instalador do MYSQL.
