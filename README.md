@@ -392,7 +392,9 @@ public class PessoaDAO {
 # Teste
 	Vamos agora testar nossa classe para certificar que está tudo certo, persistindo e listando 
 	da base de dados. Primeiro vamos criar o schema no mysql. Instale o MySQL 
-	e o Gerenciador Workbench de acordo com a referencia no inicio desse artigo 
+	e o Gerenciador Workbench de acordo com a referencia no inicio desse artigo para criar o schema se tiver
+	dúvida tem a referencia abaixo.
+![](https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/mysql%20Criacao%20de%20Schema.PNG)	
 ##	
 	Agora vamos criar um novo Teste automatizado .
 	File>New>Other>Junit Test Case
