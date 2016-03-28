@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Java-jsf-primefaces-basico by adrianoarantesms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Java-jsf-primefaces-basico</h1>
+      <h2 class="project-tagline">Este repositório tem como objetivo, disponibilizar uma visão geral de um projeto java com jsf e primefaces, com um exemplo básico, porem, bem objetivo.</h2>
+      <a href="https://github.com/adrianoarantesms/java-jsf-primefaces-basico" class="btn">View on GitHub</a>
+      <a href="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="tutorial-básico-para-javaweb-jsf-primefaces" class="anchor" href="#tutorial-b%C3%A1sico-para-javaweb-jsf-primefaces" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tutorial Básico para JavaWeb-Jsf-Primefaces</h1>
+
+<pre><code>Este tutorial tem como objetivo exemplificar uma visão básica e ao mesmo tempo ampla 
+no sentido de ver os dois mundos back-end e front-end. Vale lembrar que esse exemplo 
+é bem simples e não vamos se aprofundar em padrões de projetos, somente no que é preciso 
+para fazer funcionar uma aplicação java web com um modelo básico.
+</code></pre>
+
+<h5>
+<a id="para-isso-vamos-precisar" class="anchor" href="#para-isso-vamos-precisar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Para isso vamos precisar:</h5>
+
+<p>IDE Eclipse Mars 1 <a href="http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars2">http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars2</a></p>
+
+<p>Apache Tomcat 8 <a href="https://tomcat.apache.org/download-80.cgi">https://tomcat.apache.org/download-80.cgi</a></p>
+
+<p>Java JDK 8 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html?ssSourceSiteId=otnpt">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html?ssSourceSiteId=otnpt</a></p>
+
+<p>MySql <a href="http://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-5.7.11.0.msi">http://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-5.7.11.0.msi</a>. Instale a opção Server, a configuração padrão de usuário é root senha root.
+Mysql Workbench gerenciador para o MYSQL <a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
+
+<p>Instale também o MySql WorkBench para acessar e criar os "schemas". Esta no mesmo Instalador do MYSQL.</p>
+
+<h5>
+<a id="para-a-instalação-seguir-os-instaladores" class="anchor" href="#para-a-instala%C3%A7%C3%A3o-seguir-os-instaladores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Para a instalação seguir os instaladores.</h5>
+
+<p>configurar as variaveis de ambiente:</p>
+
+<p>JAVA_HOME = C:\Program Files\Java\jdk1.8.0_66 </p>
+
+<p>PATH = %JAVA_HOME%\bin,..</p>
+
+<p>ECLIPSE_HOME = C:\eclipse</p>
+
+<p>PATH = %ECLIPSE_HOME%,...</p>
+
+<p>CATALINA_HOME = C:\tomcat</p>
+
+<p>PATH = %CATALINA_HOME%,..</p>
+
+<p>[Obs: Não se esqueça de colocar os caminhos de acordo com sua instalação.]</p>
+
+<h3>
+<a id="configurando-o-tomcat-na-ide" class="anchor" href="#configurando-o-tomcat-na-ide" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configurando o TomCat na IDE.</h3>
+
+<pre><code>Vá em Windows&gt; Preferences&gt; Server&gt; Runtime Everonments&gt; Add
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/tomcat%20configuracao%2001.PNG?raw=true" alt=""></p>
+
+<pre><code>Selecione TomCat 8 e marque a opção para criar em um novo local
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/tomcat%20configuracao%2002.PNG?raw=true" alt="">  </p>
+
+<pre><code>Na opção JRE selecione a instalação JDK do java
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/tomcat%20configuracao%2003.PNG?raw=true" alt="">  </p>
+
+<pre><code>Se tudo ocorrer bem o tomcat estará adicionado, mas a diante, veremos como subir 
+o projeto depois pronto.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/tomcat%20configuracao%2004.PNG?raw=true" alt="">  </p>
+
+<h1>
+<a id="iniciando-o-projeto" class="anchor" href="#iniciando-o-projeto" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>*Iniciando o Projeto</h1>
+
+<pre><code>Vamos Criar um novo projeto "Dynamic Web project" (Poderia ser um projeto maven), 
+mas não vamos complicar agora é mais pra entender o conceito.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20project%2001.png?raw=true" alt="">
+<img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20project%2002.png?raw=true" alt="">
+<img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20project%2003.png?raw=true" alt=""></p>
+
+<h1>
+<a id="a-estrutura-do-projeto-deve-ficar-parecida-com-essa" class="anchor" href="#a-estrutura-do-projeto-deve-ficar-parecida-com-essa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>*A estrutura do projeto deve ficar parecida com essa:</h1>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/EstruturaProjeto.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="adicionando-as-libs-de-dependência" class="anchor" href="#adicionando-as-libs-de-depend%C3%AAncia" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adicionando as libs de dependência</h1>
+
+<pre><code>Para resumir as dependências vamos usar:
+</code></pre>
+
+<pre><code>Hibernate e suas dependências para o mapeamento na nossa base de dados
+</code></pre>
+
+<pre><code>Javax.faces, Java Server Faces (JSF) é uma especificação Java para a 
+construção de interfaces de usuário baseadas em componentes para aplicações web.
+</code></pre>
+
+<pre><code>primefaces, PrimeFaces é uma biblioteca de componentes de código aberto para 
+o JSF 2.0 para criar as interfaces Web.
+</code></pre>
+
+<pre><code>mysql-connector, vamos usar para conectar na nossa base mysql
+
+Baixe esse arquivo, descompacte arraste para a pasta lib no projeto
+</code></pre>
+
+<p><a href="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/lib/libs-dependencies.rar">https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/lib/libs-dependencies.rar</a></p>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/libs%20descompactadas.PNG?raw=true" alt=""></p>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/pasta%20correta%20libs.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="criando-as-classes" class="anchor" href="#criando-as-classes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>*Criando as classes</h1>
+
+<pre><code>Vamos trabalhar com a estrutura MVC "Model, View, Controller", onde nossa classe
+"Modelo" representará nossa tabela, nosso Controller que chamaremos de "DAO" fará 
+a persistência de dados e por fim nossa "View" que representaremos como classeMB 
+"ManagedBean" que comunicara com nosso frontEnd Através do framework "JSF".
+</code></pre>
+
+<h1>
+<a id="modelo" class="anchor" href="#modelo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modelo</h1>
+
+<pre><code>Criaremos uma classe Pessoa dentro de um package "Model" com os atributos
+"codigo, nome, telefone, email";
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20classe%20Pessoa.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="classe-pessoa" class="anchor" href="#classe-pessoa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Classe Pessoa</h1>
+
+<div class="highlight highlight-source-java"><pre>
+    <span class="pl-k">package</span> <span class="pl-smi">model</span>;
+
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Column</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Entity</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.GeneratedValue</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.GenerationType</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Id</span>;
+
+    @<span class="pl-smi">Entity</span>
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Pessoa</span> {
+
+        <span class="pl-k">@Id</span>
+        <span class="pl-k">@GeneratedValue</span>(<span class="pl-c1">strategy</span><span class="pl-k">=</span><span class="pl-smi">GenerationType</span><span class="pl-c1"><span class="pl-k">.</span>IDENTITY</span>)
+        <span class="pl-k">private</span> <span class="pl-k">int</span> id;
+
+        <span class="pl-k">@Column</span> 
+        <span class="pl-k">private</span> <span class="pl-smi">String</span> nome;
+
+        <span class="pl-k">@Column</span> 
+        <span class="pl-k">private</span> <span class="pl-smi">String</span> email;
+
+        <span class="pl-k">@Column</span> 
+        <span class="pl-k">private</span> <span class="pl-smi">String</span> telefone;    
+
+
+
+    }
+}</pre></div>
+
+<h1>
+<a id="vamos-gerar-os-getters-and-setters-para-publicar-nossos-atributos" class="anchor" href="#vamos-gerar-os-getters-and-setters-para-publicar-nossos-atributos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vamos gerar os Getters And Setters para publicar nossos atributos</h1>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/model-generated-gettersandsetters.png?raw=true" alt=""></p>
+
+<h1>
+<a id="classe-pessoa-completa" class="anchor" href="#classe-pessoa-completa" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Classe pessoa completa</h1>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-k">package</span> <span class="pl-smi">model</span>;
+
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Column</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Entity</span>;    
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.GeneratedValue</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.GenerationType</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Id</span>;
+
+    @<span class="pl-smi">Entity</span>
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Pessoa</span> {
+
+    <span class="pl-k">@Id</span>
+    <span class="pl-k">@GeneratedValue</span>(<span class="pl-c1">strategy</span><span class="pl-k">=</span><span class="pl-smi">GenerationType</span><span class="pl-c1"><span class="pl-k">.</span>IDENTITY</span>)
+    <span class="pl-k">private</span> <span class="pl-k">int</span> id;
+
+    <span class="pl-k">@Column</span> 
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> nome;
+
+    <span class="pl-k">@Column</span> 
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> email;
+
+    <span class="pl-k">@Column</span> 
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> telefone;
+
+
+
+
+    <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">getId</span>() {
+        <span class="pl-k">return</span> id;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">setId</span>(<span class="pl-k">int</span> <span class="pl-v">id</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>id <span class="pl-k">=</span> id;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getNome</span>() {
+        <span class="pl-k">return</span> nome;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">setNome</span>(<span class="pl-smi">String</span> <span class="pl-v">nome</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>nome <span class="pl-k">=</span> nome;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getEmail</span>() {
+        <span class="pl-k">return</span> email;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">setEmail</span>(<span class="pl-smi">String</span> <span class="pl-v">email</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>email <span class="pl-k">=</span> email;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getTelefone</span>() {
+        <span class="pl-k">return</span> telefone;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">setTelefone</span>(<span class="pl-smi">String</span> <span class="pl-v">telefone</span>) {
+        <span class="pl-v">this</span><span class="pl-k">.</span>telefone <span class="pl-k">=</span> telefone;
+    }
+
+    }</pre></div>
+
+<h1>
+<a id="agora-vamos-configurar-nosso-arquivo-de-persistência-para-conexão-com-o-mysql" class="anchor" href="#agora-vamos-configurar-nosso-arquivo-de-persist%C3%AAncia-para-conex%C3%A3o-com-o-mysql" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Agora vamos configurar nosso arquivo de persistência para conexão com o MYSQL.</h1>
+
+<pre><code>Crie um novo folder chamado META-INF dentro da pasta "src"
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20Folder.PNG?raw=true" alt="">
+<img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20Folder%20META-INF.PNG?raw=true" alt=""></p>
+
+<pre><code>Crie um novo arquivo com o nome persistence.xml dentro da pasta META-INF que acabou de criar
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/new%20file%20persistence.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="copie-o-conteudo-e-cole-no-corpo-do-arquivo" class="anchor" href="#copie-o-conteudo-e-cole-no-corpo-do-arquivo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Copie o conteudo e cole no corpo do arquivo</h1>
+
+<div class="highlight highlight-text-xml"><pre>    &lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>?&gt;
+    &lt;<span class="pl-ent">persistence</span> <span class="pl-e">version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span>
+        <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/xml/ns/persistence<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span>
+        <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">schemaLocation</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">persistence-unit</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>conexao<span class="pl-pds">"</span></span> <span class="pl-e">transaction-type</span>=<span class="pl-s"><span class="pl-pds">"</span>RESOURCE_LOCAL<span class="pl-pds">"</span></span>&gt;  
+            &lt;<span class="pl-ent">provider</span>&gt;org.hibernate.ejb.HibernatePersistence&lt;/<span class="pl-ent">provider</span>&gt;  
+
+            &lt;<span class="pl-ent">class</span>&gt;model.Contato&lt;/<span class="pl-ent">class</span>&gt;
+
+            &lt;<span class="pl-ent">properties</span>&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.archive.autodetection<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>class<span class="pl-pds">"</span></span> /&gt;
+
+                <span class="pl-c">&lt;!-- Conexão com o banco de dados --&gt;</span>
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.dialect<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>org.hibernate.dialect.MySQL5InnoDBDialect<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.connection.driver_class<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>com.mysql.jdbc.Driver<span class="pl-pds">"</span></span> /&gt;                     
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.connection.url<span class="pl-pds">"</span></span>   <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>jdbc:mysql://LocalHost:3306/java-jsf-primefaces-basico<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.connection.user<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>root<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.connection.password<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>root<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.hbm2ddl.auto<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>create<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.hbm2ddl.auto<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>update<span class="pl-pds">"</span></span>/&gt;
+
+                <span class="pl-c">&lt;!--Configuracoes de Debug--&gt;</span>
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.show_sql<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>hibernate.format_sql<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+                &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>use_sql_comments<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span> /&gt;
+
+            &lt;/<span class="pl-ent">properties</span>&gt;
+        &lt;/<span class="pl-ent">persistence-unit</span>&gt;
+    &lt;/<span class="pl-ent">persistence</span>&gt;</pre></div>
+
+<h1>
+<a id="entendendo-o-arquivo" class="anchor" href="#entendendo-o-arquivo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entendendo o Arquivo</h1>
+
+<pre><code>Temos a linha &lt;class&gt;model.Pessoa&lt;/class&gt;, onde mapeamos quem são nossas 
+classes entidades, ou seja, todas as classes modelos que representam as 
+tabelas do banco de dados precisam ser mapeadas aqui.
+Na linha "hibernate.connection.url" temos o caminho do MYSQL junto com seu schema 
+( Não esqueça de criar o schema "java-jsf-primefaces-basico" no MYSQL).
+Usuário e Senha padrão do MYSQL root root, altere caso seu MYSQL seja outro usuário e senha.
+já nas linhas &lt;property name="hibernate.hbm2ddl.auto" value="create" /&gt; e 
+&lt;property name="hibernate.hbm2ddl.auto" value="update" /&gt;. significa 
+que o hibernate irá criar as tabelas e atributos na base de dados e alterar se necessário
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/configure%20persistence.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="vamos-criar-nosso-dao" class="anchor" href="#vamos-criar-nosso-dao" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Vamos criar nosso DAO</h1>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/NewPessoaDAO.PNG?raw=true" alt=""></p>
+
+<pre><code>Note que se Colocar um package que não existe a própria IDE irá criá-lo.
+</code></pre>
+
+<h1>
+<a id="estrutura-de-pastas-após-criar-o-dao-deve-ficar-assim" class="anchor" href="#estrutura-de-pastas-ap%C3%B3s-criar-o-dao-deve-ficar-assim" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Estrutura de Pastas após criar o DAO deve ficar assim:</h1>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/NewPessoaDAOEstrutura.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="crud-básico" class="anchor" href="#crud-b%C3%A1sico" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Crud Básico</h1>
+
+<pre><code>Para o DAO, vamos fazer nosso CRUD básico com os métodos de Salvar, Excluir e 
+Listar usando a API de persistência JPA.
+-----------------------------------------------------------------------------------
+</code></pre>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">package</span> <span class="pl-smi">dao</span>;
+
+<span class="pl-k">import</span> <span class="pl-smi">java.util.List</span>;
+
+<span class="pl-k">import</span> <span class="pl-smi">javax.persistence.EntityManager</span>;
+<span class="pl-k">import</span> <span class="pl-smi">javax.persistence.EntityManagerFactory</span>;
+<span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Persistence</span>;
+<span class="pl-k">import</span> <span class="pl-smi">javax.persistence.Query</span>;
+
+<span class="pl-k">import</span> <span class="pl-smi">model.Pessoa</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">PessoaDAO</span> {
+    <span class="pl-smi">EntityManagerFactory</span> emf;
+    <span class="pl-smi">EntityManager</span> em;
+
+    <span class="pl-k">public</span> <span class="pl-en">PessoaDAO</span>() {
+        emf <span class="pl-k">=</span> <span class="pl-smi">Persistence</span><span class="pl-k">.</span>createEntityManagerFactory(<span class="pl-s"><span class="pl-pds">"</span>conexao<span class="pl-pds">"</span></span>);
+        em <span class="pl-k">=</span> emf<span class="pl-k">.</span>createEntityManager();
+
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">salvar</span>(<span class="pl-smi">Pessoa</span> <span class="pl-v">pessoa</span>) {
+        em<span class="pl-k">.</span>getTransaction()<span class="pl-k">.</span>begin();
+        em<span class="pl-k">.</span>merge(pessoa);
+        em<span class="pl-k">.</span>getTransaction()<span class="pl-k">.</span>commit();
+        emf<span class="pl-k">.</span>close();
+
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">excluir</span>(<span class="pl-smi">Pessoa</span> <span class="pl-v">pessoa</span>) {
+        em<span class="pl-k">.</span>getTransaction()<span class="pl-k">.</span>begin();
+        em<span class="pl-k">.</span>remove(pessoa);
+        em<span class="pl-k">.</span>getTransaction()<span class="pl-k">.</span>commit();
+        emf<span class="pl-k">.</span>close();
+    }
+    <span class="pl-k">@SuppressWarnings</span>(<span class="pl-s"><span class="pl-pds">"</span>unchecked<span class="pl-pds">"</span></span>)
+    <span class="pl-k">public</span> <span class="pl-k">List&lt;<span class="pl-smi">Pessoa</span>&gt;</span> <span class="pl-en">listarTodos</span>() {
+        em<span class="pl-k">.</span>getTransaction()<span class="pl-k">.</span>begin();
+        <span class="pl-smi">Query</span> consulta <span class="pl-k">=</span> em<span class="pl-k">.</span>createQuery(<span class="pl-s"><span class="pl-pds">"</span>select pessoa from Pessoa pessoa<span class="pl-pds">"</span></span>);
+        <span class="pl-k">List&lt;<span class="pl-smi">Pessoa</span>&gt;</span> pessoas <span class="pl-k">=</span> consulta<span class="pl-k">.</span>getResultList();
+        em<span class="pl-k">.</span>getTransaction()<span class="pl-k">.</span>commit();
+        emf<span class="pl-k">.</span>close();
+        <span class="pl-k">return</span> pessoas;
+    }
+
+}</pre></div>
+
+<pre><code>------------------------------------------------------------------------------------------
+</code></pre>
+
+<h1>
+<a id="confira-os-imports-para-certificar-que-estão-buscando-do-javaxpersistence" class="anchor" href="#confira-os-imports-para-certificar-que-est%C3%A3o-buscando-do-javaxpersistence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Confira os imports para certificar que estão buscando do Javax.Persistence</h1>
+
+<h1>
+<a id="" class="anchor" href="#" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/Imports%20Javax.Persiscente.PNG?raw=true" alt="">
+</h1>
+
+<h1>
+<a id="controller" class="anchor" href="#controller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Controller</h1>
+
+<pre><code>Vamos criar nosso Controller, a classe "Managed Bean" onde nosso FrontEnd vai se comunicar.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/PessoaMB%20new.PNG?raw=true" alt=""></p>
+
+<pre><code>A estrutura ficará assim.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/PessoaMB%20estrutura.PNG?raw=true" alt="">    </p>
+
+<pre><code>A classe contem a anotação @ManagedBean, onde o JSF irá 
+enchergar sua classe e métodos. Eis a mágica, é nessa parte 
+que publicamos o que nosso FrontEnd vai usar. Publicamos aqui 
+nossa classe pessoa, nossa lista de pessoas, e o métodos salvar por enquanto.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/PessoaMB%20classe.PNG?raw=true" alt="">   </p>
+
+<h1>
+<a id="teste" class="anchor" href="#teste" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste</h1>
+
+<pre><code>Vamos agora testar nossa classe para certificar que está tudo certo, persistindo e listando 
+da base de dados. Primeiro vamos criar o schema no mysql. Instale o MySQL 
+e o Gerenciador Workbench de acordo com a referencia no inicio desse artigo para criar o schema se tiver
+dúvida tem a referencia abaixo.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/mysql%20Criacao%20de%20Schema.PNG" alt="">    </p>
+
+<pre><code>Agora vamos criar um novo Teste automatizado .
+File&gt;New&gt;Other&gt;Junit Test Case
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/teste%20New.PNG?raw=true" alt=""></p>
+
+<pre><code>Se aparecer uma tela pedindo para adicionar a biblioteca do JUNIT pode confirmar
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/teste%20New3.PNG?raw=true" alt="">    </p>
+
+<pre><code>Estrutura deve ficar assim:
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/teste%20Estrutura.PNG?raw=true" alt=""></p>
+
+<pre><code>Classe Teste
+</code></pre>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-k">package</span> <span class="pl-smi">test</span>;
+
+    <span class="pl-k">import static</span> <span class="pl-smi">org.junit.Assert.*</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">org.junit.Test</span>;
+
+    <span class="pl-k">import</span> <span class="pl-smi">dao.PessoaDAO</span>;
+    <span class="pl-k">import</span> <span class="pl-smi">model.Pessoa</span>;
+
+    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">TestePessoa</span> {
+        <span class="pl-k">private</span> <span class="pl-smi">PessoaDAO</span> pessoaDAO;
+        <span class="pl-k">private</span> <span class="pl-smi">Pessoa</span> pessoa;
+
+        <span class="pl-k">@Test</span>   
+        <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">testSalvar</span>() {
+            pessoa <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Pessoa</span>();
+
+            pessoa<span class="pl-k">.</span>setId(<span class="pl-c1">1</span>);
+            pessoa<span class="pl-k">.</span>setNome(<span class="pl-s"><span class="pl-pds">"</span>Teste Inserção Pessoa<span class="pl-pds">"</span></span>);
+            pessoa<span class="pl-k">.</span>setEmail(<span class="pl-s"><span class="pl-pds">"</span>pessoa@teste.com<span class="pl-pds">"</span></span>);
+            pessoa<span class="pl-k">.</span>setTelefone(<span class="pl-s"><span class="pl-pds">"</span>4599991231<span class="pl-pds">"</span></span>);
+
+            pessoaDAO <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">PessoaDAO</span>();
+            pessoaDAO<span class="pl-k">.</span>salvar(pessoa);
+
+
+            assertTrue(pessoaDAO<span class="pl-k">.</span>listarTodos()<span class="pl-k">.</span>size()<span class="pl-k">&gt;</span><span class="pl-c1">0</span>);
+
+
+
+        }
+
+    }
+</pre></div>
+
+<pre><code>Para executar nosso teste &gt; Botão direito no projeto&gt;Run As&gt;JUnit Test
+Se Tudo ocorrer bem nosso teste deve passar
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/teste%20Run.PNG?raw=true" alt=""></p>
+
+<pre><code>Se o teste passou então confira na sua base de dados se criou as tabelas e inseriu o registro na tabela Pessoa
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/teste%20MySql.PNG?raw=true" alt=""></p>
+
+<h1>
+<a id="parte-web-jfs-primefaces" class="anchor" href="#parte-web-jfs-primefaces" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parte WEB JFS-PRIMEFACES.</h1>
+
+<pre><code>Vamos modificar o web.xml adicionando as dependências do JSF
+</code></pre>
+
+<div class="highlight highlight-text-xml"><pre>    &lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>?&gt;
+    &lt;<span class="pl-ent">web-app</span> <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">"</span></span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/xml/ns/javaee<span class="pl-pds">"</span></span> <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">schemaLocation</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>WebApp_ID<span class="pl-pds">"</span></span> <span class="pl-e">version</span>=<span class="pl-s"><span class="pl-pds">"</span>3.0<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">display-name</span>&gt;java-jsf-primefaces-basico&lt;/<span class="pl-ent">display-name</span>&gt;
+      &lt;<span class="pl-ent">welcome-file-list</span>&gt;
+        &lt;<span class="pl-ent">welcome-file</span>&gt;index.xhtml&lt;/<span class="pl-ent">welcome-file</span>&gt;    
+      &lt;/<span class="pl-ent">welcome-file-list</span>&gt;
+      &lt;<span class="pl-ent">servlet</span>&gt;
+        &lt;<span class="pl-ent">servlet-name</span>&gt;Faces Servlet&lt;/<span class="pl-ent">servlet-name</span>&gt;
+        &lt;<span class="pl-ent">servlet-class</span>&gt;javax.faces.webapp.FacesServlet&lt;/<span class="pl-ent">servlet-class</span>&gt;
+        &lt;<span class="pl-ent">load-on-startup</span>&gt;1&lt;/<span class="pl-ent">load-on-startup</span>&gt;
+      &lt;/<span class="pl-ent">servlet</span>&gt;
+      &lt;<span class="pl-ent">servlet-mapping</span>&gt;
+        &lt;<span class="pl-ent">servlet-name</span>&gt;Faces Servlet&lt;/<span class="pl-ent">servlet-name</span>&gt;
+        &lt;<span class="pl-ent">url-pattern</span>&gt;*.xhtml&lt;/<span class="pl-ent">url-pattern</span>&gt;
+      &lt;/<span class="pl-ent">servlet-mapping</span>&gt;
+    &lt;/<span class="pl-ent">web-app</span>&gt;  </pre></div>
+
+<h3>
+<a id="entendendo-o-arquivo-1" class="anchor" href="#entendendo-o-arquivo-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entendendo o Arquivo</h3>
+
+<pre><code>Colocamos a dependência do javax.faces e modificamos a extensão do arquivo html 
+para xhtml que tem mais vantagens e compatibilidades com xml. Mais sobre o assunto 
+no link http://www.maujor.com/w3ctuto/xhtmlfaq.html#need. Mapeamos também quem 
+vai ser o index da pagina, para que ela se direcione para o html padrão quando
+o usuário digitar o link sem referenciar o mesmo.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/webxml%20explicacao.PNG?raw=true" alt=""> </p>
+
+<h3>
+<a id="pagina-html" class="anchor" href="#pagina-html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pagina HTML</h3>
+
+<pre><code>Vamos lá, o próximo passo é criarmos nossa pagina html com as configurações necessárias 
+para usar o jsf e o primefaces. Em cima da pasta WebContent &gt; New&gt; File. Nomeie como index.xtml.
+Todos os arquivos html ou xhtml devem ficar nessa pasta, porém, pode-se organizar em subpastas.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/index%20html%20new.PNG?raw=true" alt="">  </p>
+
+<h3>
+<a id="dependências-do-arquivo" class="anchor" href="#depend%C3%AAncias-do-arquivo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependências do arquivo</h3>
+
+<div class="highlight highlight-text-html-basic"><pre>    &lt;!DOCTYPE html PUBLIC <span class="pl-s">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span>   
+       <span class="pl-s">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;
+
+    &lt;<span class="pl-ent">html</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/1999/xhtml<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:ui</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/jsf/facelets<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:h</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/jsf/html<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:f</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/jsf/core<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:p</span>=<span class="pl-s"><span class="pl-pds">"</span>http://primefaces.org/ui<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">f:view</span> <span class="pl-e">contentType</span>=<span class="pl-s"><span class="pl-pds">"</span>text/html<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">f:view</span>&gt;
+
+
+
+
+
+
+
+
+    &lt;/<span class="pl-ent">html</span>&gt;
+</pre></div>
+
+<h3>
+<a id="entendendo-o-arquivo-2" class="anchor" href="#entendendo-o-arquivo-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entendendo o arquivo</h3>
+
+<pre><code>As dependências do jsf e primefaces estão no topo do arquivo, onde referencia a 
+letra p para primefaces e as demais para jsf.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/index%20html%20dependencias.PNG?raw=true" alt=""> </p>
+
+<h3>
+<a id="a-partir-dai-é-só-colocar-os-componentes-primefaces-e-ligar-com-o-managedbean-e-seus-métodos" class="anchor" href="#a-partir-dai-%C3%A9-s%C3%B3-colocar-os-componentes-primefaces-e-ligar-com-o-managedbean-e-seus-m%C3%A9todos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A partir dai, é só colocar os componentes primefaces e ligar com o ManagedBean e seus métodos.</h3>
+
+<pre><code>Vamos começar com inputs e um botão para salvar. Para exemplos temos o site do 
+primefaces que tem os componentes prontos http://www.primefaces.org/showcase/ .
+Para exemplificar o xhtml, temos os componentes do primefaces dentro de um 
+panelGrid para que quando salvarmos alguma informação, a propriedade update possa
+atualizar os componentes e assim termos um refresh desses campos que foram 
+criados dentro do panel. Repare que para cada input(autoComplete) tem um 
+outPut label para descrição referenciando para o id do input, assim a 
+descrição fica alinhada ao componente. Já no splitButton setamos a propriedade 
+update, para fazer o refresh da pagina. Mais abaixo temos um dataTable para 
+listar as informações da buscando do controller uma Lista. Também tem os 
+atributos ligados a um outputText do dataTable;
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/index%20html%20Explicacao.PNG?raw=true" alt="">   </p>
+
+<h1>
+<a id="index-completo" class="anchor" href="#index-completo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Index Completo</h1>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;!DOCTYPE html PUBLIC <span class="pl-s">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span>   
+   <span class="pl-s">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;
+
+&lt;<span class="pl-ent">html</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">"</span>http://www.w3.org/1999/xhtml<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:ui</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/jsf/facelets<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:h</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/jsf/html<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:f</span>=<span class="pl-s"><span class="pl-pds">"</span>http://java.sun.com/jsf/core<span class="pl-pds">"</span></span>
+    <span class="pl-e">xmlns:p</span>=<span class="pl-s"><span class="pl-pds">"</span>http://primefaces.org/ui<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">f:view</span> <span class="pl-e">contentType</span>=<span class="pl-s"><span class="pl-pds">"</span>text/html<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">f:view</span>&gt;
+
+&lt;<span class="pl-ent">h:head</span>&gt;
+
+&lt;/<span class="pl-ent">h:head</span>&gt;
+
+
+&lt;<span class="pl-ent">h:body</span>&gt;
+    &lt;<span class="pl-ent">h:form</span>&gt;
+
+    <span class="pl-c">&lt;!-- Form de Cadastro --&gt;</span>
+        &lt;<span class="pl-ent">h:panelGrid</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>panelgrid<span class="pl-pds">"</span></span> <span class="pl-e">columns</span>=<span class="pl-s"><span class="pl-pds">"</span>2<span class="pl-pds">"</span></span> <span class="pl-e">cellpadding</span>=<span class="pl-s"><span class="pl-pds">"</span>5<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:outputLabel</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Nome:<span class="pl-pds">"</span></span> <span class="pl-e">for</span>=<span class="pl-s"><span class="pl-pds">"</span>acNome<span class="pl-pds">"</span></span> /&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:autoComplete</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>acNome<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{pessoaMB.pessoa.nome}<span class="pl-pds">"</span></span> /&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:outputLabel</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>E-Mail:<span class="pl-pds">"</span></span> <span class="pl-e">for</span>=<span class="pl-s"><span class="pl-pds">"</span>acEmail<span class="pl-pds">"</span></span> /&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:autoComplete</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>acEmail<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{pessoaMB.pessoa.email}<span class="pl-pds">"</span></span> /&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:outputLabel</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Telefone:<span class="pl-pds">"</span></span> <span class="pl-e">for</span>=<span class="pl-s"><span class="pl-pds">"</span>acTelefone<span class="pl-pds">"</span></span> /&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:autoComplete</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>acTelefone<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{pessoaMB.pessoa.telefone}<span class="pl-pds">"</span></span> /&gt;
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:growl</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>messages<span class="pl-pds">"</span></span> /&gt; 
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:splitButton</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>salvar<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>#{pessoaMB.salvar}<span class="pl-pds">"</span></span>
+                <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">update</span>=<span class="pl-s"><span class="pl-pds">"</span>panelgrid<span class="pl-pds">"</span></span> <span class="pl-e">icon</span>=<span class="pl-s"><span class="pl-pds">"</span>ui-icon-disk<span class="pl-pds">"</span></span>&gt;
+            &lt;/<span class="pl-ent">p</span><span class="pl-e">:splitButton</span>&gt;
+
+
+            <span class="pl-c">&lt;!-- Grid de Consulta --&gt;</span>
+            &lt;<span class="pl-ent">p</span><span class="pl-e">:dataTable</span> <span class="pl-e">var</span>=<span class="pl-s"><span class="pl-pds">"</span>c<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{pessoaMB.list}<span class="pl-pds">"</span></span>&gt;
+                &lt;<span class="pl-ent">p</span><span class="pl-e">:column</span> <span class="pl-e">headerText</span>=<span class="pl-s"><span class="pl-pds">"</span>Id<span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">h:outputText</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{c.id}<span class="pl-pds">"</span></span> /&gt;
+                &lt;/<span class="pl-ent">p</span><span class="pl-e">:column</span>&gt;
+                &lt;<span class="pl-ent">p</span><span class="pl-e">:column</span> <span class="pl-e">headerText</span>=<span class="pl-s"><span class="pl-pds">"</span>Nome<span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">h:outputText</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{c.nome}<span class="pl-pds">"</span></span> /&gt;
+                &lt;/<span class="pl-ent">p</span><span class="pl-e">:column</span>&gt;
+                &lt;<span class="pl-ent">p</span><span class="pl-e">:column</span> <span class="pl-e">headerText</span>=<span class="pl-s"><span class="pl-pds">"</span>Email<span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">h:outputText</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{c.email}<span class="pl-pds">"</span></span> /&gt;
+                &lt;/<span class="pl-ent">p</span><span class="pl-e">:column</span>&gt;
+                &lt;<span class="pl-ent">p</span><span class="pl-e">:column</span> <span class="pl-e">headerText</span>=<span class="pl-s"><span class="pl-pds">"</span>Telefone<span class="pl-pds">"</span></span>&gt;
+                    &lt;<span class="pl-ent">h:outputText</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>#{c.telefone}<span class="pl-pds">"</span></span> /&gt;
+                &lt;/<span class="pl-ent">p</span><span class="pl-e">:column</span>&gt;
+            &lt;/<span class="pl-ent">p</span><span class="pl-e">:dataTable</span>&gt;
+        &lt;/<span class="pl-ent">h:panelGrid</span>&gt;
+    &lt;/<span class="pl-ent">h:form</span>&gt;
+
+&lt;/<span class="pl-ent">h:body</span>&gt;
+
+
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<h1>
+<a id="testando-a-aplicação" class="anchor" href="#testando-a-aplica%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testando a aplicação</h1>
+
+<pre><code>Botão direito no projeto&gt; Run Server. Como não tem ainda um servidor 
+configurado para o projeto, vamos definir o tomcat instalado no inicio do tutorial.
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/iniciando%20server%2001.PNG?raw=true" alt=""> </p>
+
+<pre><code>Confira se o projeto está selecionado e finish
+</code></pre>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/iniciando%20server%2002.PNG?raw=true" alt=""> </p>
+
+<h1>
+<a id="por-fim-a-nossa-pagina-rodando-no-navegador" class="anchor" href="#por-fim-a-nossa-pagina-rodando-no-navegador" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Por fim a nossa pagina rodando no navegador.</h1>
+
+<p><img src="https://github.com/adrianoarantesms/java-jsf-primefaces-basico/blob/master/slides/pagina%20Start.PNG?raw=true" alt=""></p>
+
+<h3>
+<a id="resumindo-era-isso-que-queria-mostrar-para-quem-está-aprendendo-é-importante-ter-uma-visao-geral-como-funciona-os-dois-mundos-e-deixo-como-desafio-implementar-os-métodos-alterar-e-excluir-até-a-próxima" class="anchor" href="#resumindo-era-isso-que-queria-mostrar-para-quem-est%C3%A1-aprendendo-%C3%A9-importante-ter-uma-visao-geral-como-funciona-os-dois-mundos-e-deixo-como-desafio-implementar-os-m%C3%A9todos-alterar-e-excluir-at%C3%A9-a-pr%C3%B3xima" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resumindo era isso que queria mostrar, para quem está aprendendo é importante ter uma visao geral como funciona os dois mundos, e deixo como desafio implementar os métodos alterar e excluir. Até a próxima.</h3>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/adrianoarantesms/java-jsf-primefaces-basico">Java-jsf-primefaces-basico</a> is maintained by <a href="https://github.com/adrianoarantesms">adrianoarantesms</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
